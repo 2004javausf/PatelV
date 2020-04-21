@@ -1,6 +1,8 @@
 package com.revature.beans;
 
-public class Human {
+import com.revature.classtypes.Hunt;
+
+public class Human implements Hunt{
 
 	private String name;
 	private int age;
@@ -33,5 +35,10 @@ public class Human {
 
 	public void setWeight(int weight) {
 		this.weight=weight;
+	}
+
+	@Override
+	public void findPrey() {
+		System.out.println("I ate vegetables");
 	}
 }

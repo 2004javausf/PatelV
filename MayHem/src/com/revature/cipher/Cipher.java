@@ -13,21 +13,46 @@ public class Cipher {
 		this.pt = pt;
 		this.sp = sp;
 		
-		if(sp < 0) {
-            np ='n';
-        }
-
 		char at;
-        for(int i=0; i < pt.length();i++) 
+		for(int i=0; i < pt.length();i++) 
         {
              // Shift one character at a time
             at = pt.charAt(i);
-            at = (char) (at + this.sp);
             
-             ct = ct + at;   
-        
+			// if alphabet lies between a and z 
+            if(at >= 'a' && at <= 'z') 
+            {
+             	// shift alphabet
+             	at = (char) (at + sp);
+             	// if shift alphabet greater than 'z'
+             	if(at > 'z') {
+                	// reshift to starting position 
+                	at = (char) (at+'a'-'z'-1);
+             	}else if (at < 'a') {
+                	// reshift to starting position 
+                	at = (char) (at-'a'+'z'+1);
+             	}
+            }
+            // if alphabet lies between A and A 
+            else if(at >= 'A' && at <= 'Z') 
+            {
+             	// shift alphabet
+             	at = (char) (at + sp);
+             	// if shift alphabet greater than 'z'
+             	if(at > 'Z') {
+                	// reshift to starting position 
+                	at = (char) (at+'A'-'Z'-1);
+             	}else if (at < 'A') {
+                	// reshift to starting position 
+                	at = (char) (at-'A'+'Z'+1);
+             	}
+            }
+//			else {
+//				at = (char) (at + sp);
+//			}
+            ct = ct + at;   
         }
-   
+		
 		return ct;
 	}
 	
@@ -38,16 +63,45 @@ public class Cipher {
 		this.sp = sp;
 		
 		char at;
-        for(int i=0; i < ct.length();i++) 
+		for(int i=0; i < ct.length();i++) 
         {
              // Shift one character at a time
             at = ct.charAt(i);
-            at = (char) (at - this.sp);
-         
-            pt = pt + at;            
             
+			// if alphabet lies between a and z 
+            if(at >= 'a' && at <= 'z') 
+            {
+             	// shift alphabet
+             	at = (char) (at - sp);
+             	// if shift alphabet greater than 'z'
+             	if(at > 'z') {
+                	// reshift to starting position 
+                	at = (char) (at+'a'-'z'-1);
+             	}else if (at < 'a') {
+                	// reshift to starting position 
+                	at = (char) (at-'a'+'z'+1);
+             	}
+            }
+            // if alphabet lies between A and A 
+            else if(at >= 'A' && at <= 'Z') 
+            {
+             	// shift alphabet
+             	at = (char) (at - sp);
+             	// if shift alphabet greater than 'z'
+             	if(at > 'Z') {
+                	// reshift to starting position 
+                	at = (char) (at+'A'-'Z'-1);
+             	}else if (at < 'A') {
+                	// reshift to starting position 
+                	at = (char) (at-'A'+'Z'+1);
+             	}
+            }
+//			else {
+//				at = (char) (at - sp);
+//			}
+            pt = pt + at;   
+        
         }
-   
 		return pt;
 	}
 }

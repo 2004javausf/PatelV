@@ -24,13 +24,13 @@ public class Driver {
         
         Cipher c = new Cipher ();
         et = c.Encrypt(pt, sp);
-        
+        System.out.println("Original Text : "+ pt);
         System.out.println("Encrypted Text : " + et);
         
         dt = c.Decrypt(et, sp);
         
         System.out.println("Decrypted Text : " + dt);
-        
+          
 	}
 
 }
